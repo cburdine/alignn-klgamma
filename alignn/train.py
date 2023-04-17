@@ -55,6 +55,7 @@ from alignn.models.dense_alignn import DenseALIGNN
 from alignn.models.densegcn import DenseGCN
 from alignn.models.icgcnn import iCGCNN
 from alignn.models.alignn_cgcnn import ACGCNN
+from alignn.contrib.losses import KLGammaLoss
 from jarvis.db.jsonutils import dumpjson
 import json
 import pprint
@@ -704,6 +705,7 @@ def train_dgl(
         "l1": nn.L1Loss(),
         "poisson": nn.PoissonNLLLoss(log_input=False, full=True),
         "zig": models.modified_cgcnn.ZeroInflatedGammaLoss(),
+        "klgamma" : KLGammaLoss() # <-- added KL-Divergence of of parameterized gamma distributions
     }
     criterion = criteria[config.criterion]
 
