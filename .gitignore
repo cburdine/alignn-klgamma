@@ -130,3 +130,6 @@ dmypy.json
 
 # MacOS finder
 .DS_Store
+
+# example output directory
+examples_output/
