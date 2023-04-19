@@ -13,7 +13,7 @@ def main():
     for file in files:
         data.append((file,
                      str(20*np.random.exponential()), 
-                     str(np.random.exponential())) )
+                     str(0.001*np.random.exponential())) )
 
     with open(ID_PROP_FILE, 'w') as f:
         for xy in data:
