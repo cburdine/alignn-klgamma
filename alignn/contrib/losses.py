@@ -32,4 +32,5 @@ class KLGammaLoss(torch.nn.Module):
                      - (kappa_p - 1)*(torch.digamma(kappa_q) + torch.log(theta_q)) \
                      + theta_q*kappa_q/theta_p
         
-        return torch.mean(batch_loss)
+        return torch.mean(torch.log(
+                    torch.maximum(1e-30,batch_loss)))
