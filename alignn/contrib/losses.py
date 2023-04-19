@@ -24,7 +24,6 @@ class KLGammaLoss(torch.nn.Module):
         kappa_q = mu_q / theta_q
         kappa_p = mu_p / theta_p
 
-        print(mu_p, theta_p)
         # compute the kl divergence of true gamma distribution (p)
         # from predicted gamma distribution (q):
         batch_loss = (kappa_q - 1)*torch.digamma(kappa_q) - torch.log(theta_q) \
@@ -34,4 +33,4 @@ class KLGammaLoss(torch.nn.Module):
                      + theta_q*kappa_q/theta_p
         
         return torch.mean(torch.log(
-                    torch.maximum(1e-30,batch_loss)))
+                    torch.clamp(batch_loss, min=1e-30)))
